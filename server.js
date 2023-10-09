@@ -32,6 +32,19 @@ app.get('/api/quotes', (req, res, next) => {
 
 });
 
+// create a new quote resource
+app.post('/api/quotes', (req, res, next) => {
+    const newQuoteObj = req.query;
+    console.log(newQuoteObj);
+
+    if(newQuoteObj.quote && newQuoteObj.person) {
+        quotes.push(newQuoteObj);
+        res.send({quote : newQuoteObj});
+    } else {
+        res.status(400).send();
+    }
+});
+
 
 
 app.listen(PORT, () => {
